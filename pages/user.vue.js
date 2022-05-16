@@ -3,18 +3,12 @@ var User = {
     <div class="row mt-5">  
         <div class="col-3"></div>
         <div class="col-6">
-            <div class="error" v-if="validationErrors.length > 0" style = "color:red; margin-top: 2em; margin-bottom: 1em;">
-                {{ validationErrors }}
-            </div>
+            /user loaded
+          
         
         </div>
         <div class="col-3"></div>
     </div>
-    
-    
-    
-
-    
     `,
 
 
