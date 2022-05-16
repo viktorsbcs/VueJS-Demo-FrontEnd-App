@@ -4,7 +4,7 @@ var User = {
         <div class="col-3"></div>
         <div class="col-6">
                            
-            <form @submit="checkForm" name="checkForm">
+            <form @submit.prevent="checkForm"   name="checkForm">
             <div class="mb-3">
 
               <p v-if="errors.length">
@@ -19,11 +19,10 @@ var User = {
       
               <input
                 name="name"
-                v-model="name"
+                v-model="user.name"
                 type="text"
                 class="form-control"
                 id="name"
-                ng-required="true"
               />
 
             </div>
@@ -32,12 +31,10 @@ var User = {
       
               <input
                 name="email"
-                v-model="email"
+                v-model="user.email"
                 type="text"
                 class="form-control"
                 id="email"
-                ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
-                ng-required="true"
               />
       
 
@@ -49,9 +46,8 @@ var User = {
                 class="form-select"
                 aria-label="user-role"
                 id="role"
-                v-model="role"
+                v-model="user.role"
                 name="role"
-                ng-required="true"
               >
                 <option value="Subscriber">Subscriber</option>
                 <option value="Moderator">Moderator</option>
@@ -71,7 +67,8 @@ var User = {
 
 
 
-        
+        {{users}}
+
         </div>
         <div class="col-3"></div>
     </div>
@@ -80,9 +77,13 @@ var User = {
     data: function() {
       return {
         errors: [],
-        name: null,
-        email: null,
-        role: null
+        user:{
+          name: null,
+          email: null,
+          role: null,
+        },
+
+        users: []
       };
     },
     
@@ -90,23 +91,36 @@ var User = {
       checkForm: function (e) {
         this.errors = [];
   
-        if (!this.name) {
+        if (!this.user.name) {
           this.errors.push("Name required.");
         }
-        if (!this.email) {
+        if (!this.user.email) {
           this.errors.push('Email required.');
-        } else if (!this.validEmail(this.email)) {
+        } else if (!this.validEmail(this.user.email)) {
           this.errors.push('Valid email required.');
         }
-        if(!this.role){
+        if(!this.user.role){
           this.errors.push("Role required.")
         }
   
-        if (!this.errors.length) {
+        if (this.errors.length > 0) {
+          console.log("Validation error")
           return true;
         }
   
-        e.preventDefault();
+        if(!this.errors == 0){
+          console.log(this.user);
+          console.log("validation success")
+          this.users.push(this.user);
+  
+          this.user= {};
+        }
+
+        console.log("function end reached")
+        // e.preventDefault();
+   
+ 
+
       },
 
 
