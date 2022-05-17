@@ -3,7 +3,6 @@ var User = {
     <div class="row mt-5">
     <div class="col-3"></div>
     <div class="col-6">
-
         <form @submit.prevent="checkForm" name="checkForm">
             <div class="mb-3">
                 <p v-if="errors.length">
@@ -36,11 +35,8 @@ var User = {
                 Submit
             </button>
         </form>
-
-
     </div>
     <div class="col-3"></div>
-
     <div class="row mt-5">
         <div class="col-3"></div>
         <div class="col-6">
@@ -146,7 +142,7 @@ var User = {
         </div>
     </div>
   </div>
-    `,
+  `,
 
   data: function () {
     return {

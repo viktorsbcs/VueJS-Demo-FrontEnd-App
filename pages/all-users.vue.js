@@ -1,7 +1,6 @@
 var AllUsers = {
   template: `
     <div class="row mt-5">
-
     <div class="col-3"></div>
     <div class="col-6">
         <div class="row pull-right">
@@ -12,7 +11,6 @@ var AllUsers = {
     </div>
     <div class="col-3"></div>
     </div>
-
     <div class="row mt-5">
     <!--User list-->
     <div class="col-12">
@@ -30,7 +28,7 @@ var AllUsers = {
         </div>
     </div>
     </div>
-    `,
+  `,
   data: function () {
     return {
       errors: [],
