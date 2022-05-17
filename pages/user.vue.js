@@ -93,7 +93,7 @@ var User = {
               role="tab"
               aria-controls="nav-all"
               aria-selected="true"
-              @click="filterNav(1)"
+              
             >
               All
             </button>
@@ -107,7 +107,7 @@ var User = {
               role="tab"
               aria-controls="nav-administrator"
               aria-selected="false"
-              @click="filterNav(2)"
+              
             >
               Administrators
             </button>
@@ -121,7 +121,7 @@ var User = {
               role="tab"
               aria-controls="nav-moderator"
               aria-selected="false"
-              @click="filterNav(3)"
+              
             >
               Moderators
             </button>
@@ -135,7 +135,7 @@ var User = {
               role="tab"
               aria-controls="nav-subscriber"
               aria-selected="false"
-              @click="filterNav(4)"
+              
             >
               Subscribers
             </button>
@@ -156,7 +156,7 @@ var User = {
                     <th>Email</th>
                     <th>Role</th>
                   </tr>
-                  <tr v-for="user in users">
+                  <tr v-for="user in filterNav(1)">
                     <td>{{user.userId}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -178,7 +178,7 @@ var User = {
                     <th>Email</th>
                     <th>Role</th>
                   </tr>
-                  <tr v-for="user in users">
+                  <tr v-for="user in filterNav(2)">
                     <td>{{user.userId}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -200,7 +200,7 @@ var User = {
                     <th>Email</th>
                     <th>Role</th>
                   </tr>
-                  <tr v-for="user in users">
+                  <tr v-for="user in filterNav(3)">
                     <td>{{user.userId}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -222,7 +222,7 @@ var User = {
                     <th>Email</th>
                     <th>Role</th>
                   </tr>
-                  <tr v-for="user in users">
+                  <tr v-for="user in filterNav(4)">
                     <td>{{user.userId}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
@@ -317,11 +317,19 @@ var User = {
     },
 
     filterNav: function (setTab) {
-      this.fillText = "All";
-      if (setTab === 1) this.filtText = "All";
-      if (setTab === 2) this.filtText = "Administrator";
-      if (setTab === 3) this.filtText = "Moderator";
-      if (setTab === 4) this.filtText = "Subscriber";
+      // this.fillText = "All";
+      if (setTab === 1) return this.users;
+      if (setTab === 2)
+        return this.users.filter((user) => user.role === "Administrator");
+      if (setTab === 3)
+        return this.users.filter((user) => user.role === "Moderator");
+      if (setTab === 4)
+        return this.users.filter((user) => user.role === "Subscriber");
+
+      // if (setTab === 1) this.filtText = "All";
+      // if (setTab === 2) this.filtText = "Administrator";
+      // if (setTab === 3) this.filtText = "Moderator";
+      // if (setTab === 4) this.filtText = "Subscriber";
 
       console.log(
         "filterNav() triggered, setTab=" +
@@ -329,7 +337,6 @@ var User = {
           ", fillText=" +
           this.filtText
       );
-
     },
 
     populateWithDummyData: function () {
