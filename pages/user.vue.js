@@ -79,6 +79,23 @@ var User = {
           <div class="col-3"></div>
           <div class="col-6">
           
+            <table class="table table-bordered">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+            </tr>
+            <tr v-for="user in users">
+              <td>{{user.userId}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+            </tr>
+          </table>
+
+
+
           
           
           </div>
