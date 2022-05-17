@@ -93,7 +93,7 @@ var User = {
               role="tab"
               aria-controls="nav-all"
               aria-selected="true"
-              ng-click="select(1)"
+              @click="filterNav(1)"
             >
               All
             </button>
@@ -107,7 +107,7 @@ var User = {
               role="tab"
               aria-controls="nav-administrator"
               aria-selected="false"
-              ng-click="select(2)"
+              @click="filterNav(2)"
             >
               Administrators
             </button>
@@ -121,7 +121,7 @@ var User = {
               role="tab"
               aria-controls="nav-moderator"
               aria-selected="false"
-              ng-click="select(3)"
+              @click="filterNav(3)"
             >
               Moderators
             </button>
@@ -135,7 +135,7 @@ var User = {
               role="tab"
               aria-controls="nav-subscriber"
               aria-selected="false"
-              ng-click="select(4)"
+              @click="filterNav(4)"
             >
               Subscribers
             </button>
@@ -269,7 +269,8 @@ var User = {
         email: null,
         role: null,
       },
-      userCounter : 0,
+      userCounter: 0,
+      fillText: "",
       users: [],
     };
   },
@@ -315,14 +316,30 @@ var User = {
       return re.test(email);
     },
 
-    populateWithDummyData: function(){
+    filterNav: function (setTab) {
+      this.fillText = "All";
+      if (setTab === 1) this.filtText = "All";
+      if (setTab === 2) this.filtText = "Administrator";
+      if (setTab === 3) this.filtText = "Moderator";
+      if (setTab === 4) this.filtText = "Subscriber";
+
+      console.log(
+        "filterNav() triggered, setTab=" +
+          setTab +
+          ", fillText=" +
+          this.filtText
+      );
+
+    },
+
+    populateWithDummyData: function () {
       this.users = [
         {
-        name: "Sam Anthony",
-        email: "sam@gmail.com",
-        role: "Administrator",
-        userId: 1
-      },
+          name: "Sam Anthony",
+          email: "sam@gmail.com",
+          role: "Administrator",
+          userId: 1,
+        },
         {
           name: "Bridget Jones",
           email: "bridget@inbox.com",
@@ -376,9 +393,9 @@ var User = {
           email: "bill@info.com",
           role: "Subscriber",
           userId: 10,
-        }
+        },
       ];
       this.userCounter = 10;
-    }
+    },
   },
 };
