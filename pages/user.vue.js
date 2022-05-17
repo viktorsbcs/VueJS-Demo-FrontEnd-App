@@ -93,7 +93,6 @@ var User = {
               role="tab"
               aria-controls="nav-all"
               aria-selected="true"
-              
             >
               All
             </button>
@@ -107,7 +106,6 @@ var User = {
               role="tab"
               aria-controls="nav-administrator"
               aria-selected="false"
-              
             >
               Administrators
             </button>
@@ -121,7 +119,6 @@ var User = {
               role="tab"
               aria-controls="nav-moderator"
               aria-selected="false"
-              
             >
               Moderators
             </button>
@@ -135,7 +132,6 @@ var User = {
               role="tab"
               aria-controls="nav-subscriber"
               aria-selected="false"
-              
             >
               Subscribers
             </button>
@@ -317,7 +313,6 @@ var User = {
     },
 
     filterNav: function (setTab) {
-      // this.fillText = "All";
       if (setTab === 1) return this.users;
       if (setTab === 2)
         return this.users.filter((user) => user.role === "Administrator");
@@ -325,11 +320,6 @@ var User = {
         return this.users.filter((user) => user.role === "Moderator");
       if (setTab === 4)
         return this.users.filter((user) => user.role === "Subscriber");
-
-      // if (setTab === 1) this.filtText = "All";
-      // if (setTab === 2) this.filtText = "Administrator";
-      // if (setTab === 3) this.filtText = "Moderator";
-      // if (setTab === 4) this.filtText = "Subscriber";
 
       console.log(
         "filterNav() triggered, setTab=" +
