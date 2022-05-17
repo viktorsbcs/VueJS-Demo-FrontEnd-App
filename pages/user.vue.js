@@ -99,7 +99,15 @@ var User = {
           
           
           </div>
-          <div class="col-3"></div>
+          <div class="col-3">
+
+            <button
+            type="button"
+            class="btn btn-primary"
+            @click="populateWithDummyData"
+            >Fill with dummy data</button>
+
+          </div>
 
         </div>
 
@@ -147,7 +155,7 @@ var User = {
 
       if (!this.errors == 0) {
         console.log(this.user);
-        console.log("validation success");
+        console.log("Validation success");
         this.userCounter += 1;
         this.user.userId = this.userCounter;
         this.users.push(this.user);
@@ -155,7 +163,7 @@ var User = {
         this.user = {};
       }
 
-      console.log("function end reached");
+      console.log("Function end reached");
       // e.preventDefault();
     },
 
@@ -164,5 +172,71 @@ var User = {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
+
+    populateWithDummyData: function(){
+      this.users = [
+        {
+        name: "Sam Anthony",
+        email: "sam@gmail.com",
+        role: "Administrator",
+        userId: 1
+      },
+        {
+          name: "Bridget Jones",
+          email: "bridget@inbox.com",
+          role: "Moderator",
+          userId: 2,
+        },
+        {
+          name: "Karl Thomson",
+          email: "karl@yahoo.com",
+          role: "Moderator",
+          userId: 3,
+        },
+        {
+          name: "Justine Adamson",
+          email: "justine@gmail.com",
+          role: "Subscriber",
+          userId: 4,
+        },
+        {
+          name: "Aleksandr Nowitzki",
+          email: "aleksandr@gmail.com",
+          role: "Subscriber",
+          userId: 5,
+        },
+        {
+          name: "William Manor",
+          email: "william@gmail.com",
+          role: "Administrator",
+          userId: 6,
+        },
+        {
+          name: "George Bean",
+          email: "george@gmail.com",
+          role: "Moderator",
+          userId: 7,
+        },
+        {
+          name: "Jack Depp",
+          email: "jack@outlook.com",
+          role: "Subscriber",
+          userId: 8,
+        },
+        {
+          name: "Branda Simpson",
+          email: "branda@abc.com",
+          role: "Subscriber",
+          userId: 9,
+        },
+        {
+          name: "Bill Russel",
+          email: "bill@info.com",
+          role: "Subscriber",
+          userId: 10,
+        }
+      ];
+      this.userCounter = 10;
+    }
   },
 };
