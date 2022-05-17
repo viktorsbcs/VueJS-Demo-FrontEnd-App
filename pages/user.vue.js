@@ -71,64 +71,81 @@ var User = {
 
         </div>
         <div class="col-3"></div>
+
+
+        <div class="row mt-5">
+  
+
+          <div class="col-3"></div>
+          <div class="col-6">
+          
+          
+          
+          </div>
+          <div class="col-3"></div>
+
+        </div>
+
+
+
+
+
     </div>
     `,
 
-    data: function() {
-      return {
-        errors: [],
-        user:{
-          name: null,
-          email: null,
-          role: null,
-        },
+  data: function () {
+    return {
+      errors: [],
+      user: {
+        userId: null,
+        name: null,
+        email: null,
+        role: null,
+      },
+      userCounter : 0,
+      users: [],
+    };
+  },
 
-        users: []
-      };
+  methods: {
+    checkForm: function (e) {
+      this.errors = [];
+
+      if (!this.user.name) {
+        this.errors.push("Name required.");
+      }
+      if (!this.user.email) {
+        this.errors.push("Email required.");
+      } else if (!this.validEmail(this.user.email)) {
+        this.errors.push("Valid email required.");
+      }
+      if (!this.user.role) {
+        this.errors.push("Role required.");
+      }
+
+      if (this.errors.length > 0) {
+        console.log("Validation error");
+        return true;
+      }
+
+      if (!this.errors == 0) {
+        console.log(this.user);
+        console.log("validation success");
+        this.userCounter += 1;
+        this.user.userId = this.userCounter;
+        this.users.push(this.user);
+
+        this.user = {};
+      }
+
+      console.log("function end reached");
+      // e.preventDefault();
     },
-    
-    methods: {
-      checkForm: function (e) {
-        this.errors = [];
-  
-        if (!this.user.name) {
-          this.errors.push("Name required.");
-        }
-        if (!this.user.email) {
-          this.errors.push('Email required.');
-        } else if (!this.validEmail(this.user.email)) {
-          this.errors.push('Valid email required.');
-        }
-        if(!this.user.role){
-          this.errors.push("Role required.")
-        }
-  
-        if (this.errors.length > 0) {
-          console.log("Validation error")
-          return true;
-        }
-  
-        if(!this.errors == 0){
-          console.log(this.user);
-          console.log("validation success")
-          this.users.push(this.user);
-  
-          this.user= {};
-        }
 
-        console.log("function end reached")
-        // e.preventDefault();
-   
- 
-
-      },
-
-
-      validEmail: function (email) {
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-      },
-
-
-    }
+    validEmail: function (email) {
+      var re =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+  },
 };
